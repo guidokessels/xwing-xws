@@ -20,5 +20,5 @@ test('#getXWSUrl() returns url to xws json', () => {
   const url = 'http://x-wing.fabpsb.net/permalink.php?sq=r10a6n1o1r10a6o1r10a6o1';
   const result = 'http://x-wing.fabpsb.net/permalink.php?sq=r10a6n1o1r10a6o1r10a6o1&xws=1';
 
-  expect(builder.getXWSUrl(url)).toBe(result);
+  expect(builder.getXWSUrl(url)).toEqual(result);
 });

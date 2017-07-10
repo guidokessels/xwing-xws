@@ -32,5 +32,5 @@ test('#getXWSUrl() returns url to xws json', () => {
   const url = 'http://xwing-builder.co.uk/xws/710293#view=full';
   const result = 'http://xwing-builder.co.uk/xws/710293?raw=1';
 
-  expect(builder.getXWSUrl(url)).toBe(result);
+  expect(builder.getXWSUrl(url)).toEqual(result);
 });

@@ -31,5 +31,5 @@ test('#getXWSUrl() returns url to yasb-xws backend', () => {
   const result =
     'https://yasb-xws.herokuapp.com/?f=Rebel%20Alliance&d=v4!s!204:27,136,198,148:41:13:;95:27,23,-1,201:14:27:U.202,m.12&sn=Unnamed%20Squadron&obs=';
 
-  expect(builder.getXWSUrl(url)).toBe(result);
+  expect(builder.getXWSUrl(url)).toEqual(result);
 });

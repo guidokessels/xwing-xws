@@ -21,5 +21,5 @@ test('#getXWSUrl() returns url to xws json', () => {
 
   // No need to change meta-wing urls as they already
   // point to json files, so input & output is the same
-  expect(builder.getXWSUrl(url)).toBe(url);
+  expect(builder.getXWSUrl(url)).toEqual(url);
 });
