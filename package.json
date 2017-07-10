@@ -1,5 +1,5 @@
 {
-  "name": "xwing-load-xws",
+  "name": "xwing-xws",
   "version": "1.0.0",
   "description": "Load lists in xws format from all popular X-Wing list builders",
   "main": "lib/index.js",
@@ -28,5 +28,9 @@
     "jest": "^20.0.4",
     "lint-staged": "^4.0.0",
     "prettier": "^1.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guidokessels/xwing-xws.git"
   }
 }
