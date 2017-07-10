@@ -14,7 +14,8 @@
   "lint-staged": {
     "*.js": [
       "prettier --single-quote --print-width 100 --trailing-comma es5 --write",
-      "git add"
+      "git add",
+      "jest --bail --findRelatedTests"
     ]
   },
   "dependencies": {
