@@ -1,0 +1,31 @@
+{
+  "name": "xwing-load-xws",
+  "version": "1.0.0",
+  "description": "Load lists in xws format from all popular X-Wing list builders",
+  "main": "lib/index.js",
+  "author": "Guido Kessels <guidokessels@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel lib -d dist",
+    "test": "jest",
+    "test:watch": "jest --watch --coverage",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --print-width 100 --trailing-comma es5 --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "node-fetch": "^1.7.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "husky": "^0.14.1",
+    "jest": "^20.0.4",
+    "lint-staged": "^4.0.0",
+    "prettier": "^1.5.2"
+  }
+}
