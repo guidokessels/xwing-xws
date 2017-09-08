@@ -4,36 +4,36 @@ const XWS_URL = 'http://mybuilder.com/path/to/squad.xws';
 
 describe('#fromURL()', () => {
   describe('throws an error', () => {
-    test('when there are no builders to resolve the url', () => {
+    test('when there are no integrations to resolve the url', () => {
       const instance = new XwingXWS([]);
       return expect(instance.fromUrl(XWS_URL)).rejects.toMatchObject({
-        message: 'URL does not point to a known builder.',
+        message: 'URL does not point to a known XWS integration.',
       });
     });
-    test('when given an url that cannot be matched to a builder', () => {
+    test('when given an url that cannot be matched', () => {
       const mockBuilder = {
         matches: jest.fn(() => false),
       };
       const instance = new XwingXWS([mockBuilder]);
       return expect(instance.fromUrl('foo.com')).rejects.toMatchObject({
-        message: 'URL does not point to a known builder.',
+        message: 'URL does not point to a known XWS integration.',
       });
     });
-    test('when XWS cannot be fetched from the builder', () => {
-      const error = new Error('Error from builder');
-      const mockBuilder = {
+    test('when XWS cannot be fetched from the integration', () => {
+      const error = new Error('Error from integration');
+      const mockIntegration = {
         matches: jest.fn(() => true),
         getXWSUrl: jest.fn(() => {
           throw error;
         }),
       };
-      const instance = new XwingXWS([mockBuilder]);
+      const instance = new XwingXWS([mockIntegration]);
       return expect(instance.fromUrl(XWS_URL)).rejects.toMatchObject({
         message: 'There was an error fetching the list: ' + error,
       });
     });
   });
-  test('uses the first builder that can resolve the url', () => {
+  test('uses the first integration that can resolve the url', () => {
     const mockBuilder1 = {
       matches: jest.fn(() => false),
     };
@@ -50,7 +50,7 @@ describe('#fromURL()', () => {
     expect(mockBuilder2.matches).toHaveBeenCalled();
     expect(mockBuilder3.matches).not.toHaveBeenCalled();
   });
-  test('fetches XWS from the builder', () => {
+  test('fetches XWS from the integration', () => {
     const mockFetch = jest.fn();
     const mockBuilder = {
       matches: jest.fn(() => true),

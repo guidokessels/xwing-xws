@@ -1,4 +1,4 @@
-import Fabs from '../../lib/builders/Fabs';
+import Fabs from '../../lib/integrations/Fabs';
 
 describe('#matches() matches all Fabs urls', () => {
   test('http url', () => {

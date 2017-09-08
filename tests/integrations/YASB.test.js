@@ -1,4 +1,4 @@
-import YASB from '../../lib/builders/YASB';
+import YASB from '../../lib/integrations/YASB';
 
 describe('#matches() matches all YASB urls', () => {
   test('https url', () => {
