@@ -1,11 +1,13 @@
 import XwingXWS from '../lib/XwingXWS';
 
 const XWS_URL = 'http://mybuilder.com/path/to/squad.xws';
-let mockFetch;
+let mockListFetcher;
 let mockIntegration;
 
 beforeEach(() => {
-  mockFetch = jest.fn();
+  mockListFetcher = {
+    fetch: jest.fn(),
+  };
   mockIntegration = {
     matches: jest.fn(() => true),
     getXWSUrl: jest.fn(() => XWS_URL),
@@ -14,23 +16,21 @@ beforeEach(() => {
 
 describe('constructor()', () => {
   test('throws an error when there are no integrations specified', () =>
-    expect(() => new XwingXWS([], mockFetch)).toThrow(
+    expect(() => new XwingXWS([], mockListFetcher)).toThrow(
       'Requires at least 1 XWS integration to be configured.'
     ));
   test('throws an error when there is no fetch() method specified', () =>
-    expect(() => new XwingXWS([mockIntegration])).toThrow(
-      'Requires a fetch() method to be defined.'
-    ));
+    expect(() => new XwingXWS([mockIntegration])).toThrow('Requires a fetch() method.'));
 });
 
 describe('#fromURL()', () => {
   describe('throws an error', () => {
     test('when an error occurs fetching the XWS from the integration', () => {
       const error = new Error('<error message>');
-      mockFetch = jest.fn().mockImplementation(() => {
+      mockListFetcher.fetch = jest.fn().mockImplementation(() => {
         throw error;
       });
-      const instance = new XwingXWS([mockIntegration], mockFetch);
+      const instance = new XwingXWS([mockIntegration], mockListFetcher);
 
       return expect(instance.fromUrl(XWS_URL)).rejects.toMatchObject({
         message: 'There was an error fetching the list. ' + error,
@@ -42,40 +42,24 @@ describe('#fromURL()', () => {
       const mockIntegration = {
         matches: jest.fn(() => false),
       };
-      const instance = new XwingXWS([mockIntegration], mockFetch);
+      const instance = new XwingXWS([mockIntegration], mockListFetcher);
       const result = await instance.fromUrl('foo.com');
 
       expect(result).toEqual(false);
     });
     test('when XWS fetching was unsuccessful', async () => {
-      mockFetch = jest.fn().mockImplementation(() => {
-        return new Promise((resolve, reject) => {
-          resolve({ ok: false });
-        });
-      });
-      const instance = new XwingXWS([mockIntegration], mockFetch);
-      const result = await instance.fromUrl(XWS_URL);
-
-      expect(result).toEqual(false);
-    });
-    test('when received JSON is not valid XWS', async () => {
-      const jsonResponse = { foo: 'bar' };
-      mockFetch = jest.fn().mockImplementation(() => {
-        return new Promise((resolve, reject) => {
-          resolve({ ok: true, json: () => jsonResponse });
-        });
-      });
-      const instance = new XwingXWS([mockIntegration], mockFetch);
+      mockListFetcher.fetch = jest.fn(() => false);
+      const instance = new XwingXWS([mockIntegration], mockListFetcher);
       const result = await instance.fromUrl(XWS_URL);
 
       expect(result).toEqual(false);
     });
   });
-  test('uses the first integration that can resolve the url', () => {
-    const integration1 = { matches: jest.fn(() => false) };
-    const integration2 = { matches: jest.fn(() => true) };
-    const integration3 = { matches: jest.fn(() => true) };
-    const instance = new XwingXWS([integration1, integration2, integration3], mockFetch);
+  test('stops after finding the first integration that can resolve the url', () => {
+    const integration1 = { matches: jest.fn(() => false), getXWSUrl: jest.fn() };
+    const integration2 = { matches: jest.fn(() => true), getXWSUrl: jest.fn() };
+    const integration3 = { matches: jest.fn(() => true), getXWSUrl: jest.fn() };
+    const instance = new XwingXWS([integration1, integration2, integration3], mockListFetcher);
     instance.fromUrl(XWS_URL);
 
     expect(integration1.matches).toHaveBeenCalled();
@@ -83,10 +67,10 @@ describe('#fromURL()', () => {
     expect(integration3.matches).not.toHaveBeenCalled();
   });
   test('fetches XWS from the integration', async () => {
-    const instance = new XwingXWS([mockIntegration], mockFetch);
+    const instance = new XwingXWS([mockIntegration], mockListFetcher);
     instance.fromUrl(XWS_URL);
 
-    expect(mockFetch).toHaveBeenCalledWith(XWS_URL);
+    expect(mockListFetcher.fetch).toHaveBeenCalledWith(XWS_URL);
   });
   test('returns XWS on success', async () => {
     const xws = {
@@ -100,13 +84,9 @@ describe('#fromURL()', () => {
       ],
     };
 
-    mockFetch = jest.fn().mockImplementation(() => {
-      return new Promise((resolve, reject) => {
-        resolve({ ok: true, json: () => xws });
-      });
-    });
+    mockListFetcher.fetch = jest.fn(() => xws);
 
-    const instance = new XwingXWS([mockIntegration], mockFetch);
+    const instance = new XwingXWS([mockIntegration], mockListFetcher);
     const result = await instance.fromUrl(XWS_URL);
 
     expect(result).toEqual(xws);
