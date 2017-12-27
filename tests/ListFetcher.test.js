@@ -1,9 +1,12 @@
-import { Response } from 'node-fetch';
-import ListFetcher from '../lib/ListFetcher';
+import nock from 'nock';
 
-const XWS_URL = 'http://mybuilder.com/path/to/squad.xws';
+import { fetchList } from '../lib/ListFetcher';
 
-describe('listFetcher', () => {
+const DOMAIN = 'https://mybuilder.com';
+const PATH = '/path/to/squad.xws';
+const XWS_URL = DOMAIN + PATH;
+
+describe('ListFetcher', () => {
   test('returns XWS on success', async () => {
     const xws = {
       faction: 'imperial',
@@ -15,28 +18,23 @@ describe('listFetcher', () => {
         },
       ],
     };
+    nock(DOMAIN).get(PATH).reply(200, xws);
 
-    const response = new Response(JSON.stringify(xws));
-    const instance = new ListFetcher(() => Promise.resolve(response));
-
-    const result = await instance.fetch(XWS_URL);
-
+    const result = await fetchList(XWS_URL);
     expect(result).toEqual(xws);
   });
   describe('returns `false`', () => {
-    test('when XWS could not be fetched', async () => {
-      const response = new Response('', { status: 404, statusText: 'Not Found' });
-      const instance = new ListFetcher(() => Promise.resolve(response));
+    test('if XWS could not be fetched', async () => {
+      nock(DOMAIN).get(PATH).reply(404);
 
-      const result = await instance.fetch(XWS_URL);
+      const result = await fetchList(XWS_URL);
       expect(result).toEqual(false);
     });
-    test('when the received JSON is not valid XWS', async () => {
+    test('if the received JSON is not valid XWS', async () => {
       const invalidXws = { foo: 'bar' }; // Missing `pilots` and `faction` fields
-      const response = new Response(JSON.stringify(invalidXws));
-      const instance = new ListFetcher(() => Promise.resolve(response));
+      nock(DOMAIN).get(PATH).reply(200, invalidXws);
 
-      const result = await instance.fetch(XWS_URL);
+      const result = await fetchList(XWS_URL);
       expect(result).toEqual(false);
     });
   });

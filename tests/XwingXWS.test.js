@@ -1,17 +1,15 @@
 import XwingXWS from '../lib/XwingXWS';
 
 const XWS_URL = 'http://mybuilder.com/path/to/squad.xws';
-let mockListFetcher;
 let mockIntegration;
+let mockListFetcher;
 
 beforeEach(() => {
-  mockListFetcher = {
-    fetch: jest.fn(),
-  };
   mockIntegration = {
     matches: jest.fn(() => true),
     getXWSUrl: jest.fn(() => XWS_URL),
   };
+  mockListFetcher = jest.fn();
 });
 
 describe('constructor()', () => {
@@ -27,7 +25,7 @@ describe('#fromURL()', () => {
   describe('throws an error', () => {
     test('when an error occurs fetching the XWS from the integration', () => {
       const error = new Error('<error message>');
-      mockListFetcher.fetch = jest.fn().mockImplementation(() => {
+      mockListFetcher = jest.fn().mockImplementation(() => {
         throw error;
       });
       const instance = new XwingXWS([mockIntegration], mockListFetcher);
@@ -38,7 +36,7 @@ describe('#fromURL()', () => {
     });
   });
   describe('returns `false`', () => {
-    test('when given an url that cannot be matched', async () => {
+    test('when given an url that cannot be matched to an integration', async () => {
       const mockIntegration = {
         matches: jest.fn(() => false),
       };
@@ -48,7 +46,7 @@ describe('#fromURL()', () => {
       expect(result).toEqual(false);
     });
     test('when XWS fetching was unsuccessful', async () => {
-      mockListFetcher.fetch = jest.fn(() => false);
+      mockListFetcher = jest.fn(() => false);
       const instance = new XwingXWS([mockIntegration], mockListFetcher);
       const result = await instance.fromUrl(XWS_URL);
 
@@ -70,7 +68,7 @@ describe('#fromURL()', () => {
     const instance = new XwingXWS([mockIntegration], mockListFetcher);
     instance.fromUrl(XWS_URL);
 
-    expect(mockListFetcher.fetch).toHaveBeenCalledWith(XWS_URL);
+    expect(mockListFetcher).toHaveBeenCalledWith(XWS_URL);
   });
   test('returns XWS on success', async () => {
     const xws = {
@@ -84,7 +82,7 @@ describe('#fromURL()', () => {
       ],
     };
 
-    mockListFetcher.fetch = jest.fn(() => xws);
+    mockListFetcher = jest.fn(() => xws);
 
     const instance = new XwingXWS([mockIntegration], mockListFetcher);
     const result = await instance.fromUrl(XWS_URL);
