@@ -1,14 +1,12 @@
 # xwing-list-loader
 
-A simple Node module that turns URLs into XWS JSON objects by parsing the url and fetching the XWS from the appropriate endpoint.
+A simple Node module that takes squad builder URLs and returns the matching [XWS object](https://github.com/elistevens/xws-spec).
 
 ## Motivation
 
-In several projects I wanted to resolve a squad builder url to that squad's XWS object. I found myself copy-pasting some snippets of code between those projects, that I later had to update every time I wanted to support a new endpoint. 
+In several of my X-Wing projects I wanted to resolve a squad builder url to that squad's XWS object. I found myself copy-pasting some snippets of code between projects that I later had to update every time I wanted to support a new endpoint. This wouldn't work in the long run so I created this module so I can build it once and re-use it everywhere I need it.
 
-I've created this module so I can build it once and re-use it everywhere I need it.
-
-## Install
+## Installation
 
 Install using `yarn` or `npm`:
 
@@ -22,7 +20,7 @@ $ npm install xwing-list-loader --save
 
 ## API
 
-### fromURL(url)
+### load(url)
 
 - `url` A string representing the squad URL for fetching
 - Returns: `Promise<Object|False>`
@@ -43,12 +41,12 @@ The promise will be rejected if:
 Example:
 
 ```js
-import loadXWS from 'xwing-list-loader';
+import listLoader from 'xwing-list-loader';
 
 const url = 'http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v4!s!22:170,243:23:25:U.124&sn=Squad%20Example&obs=';
 
 // Using promises
-loadXWS.fromUrl(url).then(
+listLoader.load(url).then(
   xws => {
     console.log(xws);
   },
@@ -60,7 +58,7 @@ loadXWS.fromUrl(url).then(
 // Using async/await
 (async () => {
   try {
-    const xws = await loadXWS.fromUrl(url);
+    const xws = await listLoader.load(url);
     console.log(xws);
   } catch (err) {
     console.error(err);
@@ -77,3 +75,9 @@ A URL will be matched against the following endpoints (in order):
 3. [Fab's Squadrons Generator](http://x-wing.fabpsb.net/)
 4. [Meta-Wing](http://meta-wing.com/)
 
+## License
+[MIT](http://guidokessels.mit-license.org/)
+
+---
+
+Star Wars, X-Wing: The Miniatures Game and all related properties are owned by Fantasy Flight Games, Lucasfilm Ltd., and/or Disney.

@@ -5,7 +5,7 @@ describe('module', () => {
   test('exports an instance of XwingListLoader', () => {
     expect(module).toBeInstanceOf(XwingListLoader);
   });
-  test('has a #fromURl() method', () => {
-    expect(module.fromUrl).toBeInstanceOf(Function);
+  test('has a #load() method', () => {
+    expect(module.load).toBeInstanceOf(Function);
   });
 });

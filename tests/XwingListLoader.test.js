@@ -21,7 +21,7 @@ describe('constructor()', () => {
     expect(() => new XwingListLoader([mockIntegration])).toThrow('Requires a fetch() method.'));
 });
 
-describe('#fromURL()', () => {
+describe('#load()', () => {
   describe('throws an error', () => {
     test('when an error occurs fetching the XWS from the integration', () => {
       const error = new Error('<error message>');
@@ -30,7 +30,7 @@ describe('#fromURL()', () => {
       });
       const instance = new XwingListLoader([mockIntegration], mockListFetcher);
 
-      return expect(instance.fromUrl(XWS_URL)).rejects.toMatchObject({
+      return expect(instance.load(XWS_URL)).rejects.toMatchObject({
         message: 'There was an error fetching the list. ' + error,
       });
     });
@@ -41,14 +41,14 @@ describe('#fromURL()', () => {
         matches: jest.fn(() => false),
       };
       const instance = new XwingListLoader([mockIntegration], mockListFetcher);
-      const result = await instance.fromUrl('foo.com');
+      const result = await instance.load('foo.com');
 
       expect(result).toEqual(false);
     });
     test('when XWS fetching was unsuccessful', async () => {
       mockListFetcher = jest.fn(() => false);
       const instance = new XwingListLoader([mockIntegration], mockListFetcher);
-      const result = await instance.fromUrl(XWS_URL);
+      const result = await instance.load(XWS_URL);
 
       expect(result).toEqual(false);
     });
@@ -61,7 +61,7 @@ describe('#fromURL()', () => {
       [integration1, integration2, integration3],
       mockListFetcher
     );
-    instance.fromUrl(XWS_URL);
+    instance.load(XWS_URL);
 
     expect(integration1.matches).toHaveBeenCalled();
     expect(integration2.matches).toHaveBeenCalled();
@@ -69,7 +69,7 @@ describe('#fromURL()', () => {
   });
   test('fetches XWS from the integration', async () => {
     const instance = new XwingListLoader([mockIntegration], mockListFetcher);
-    instance.fromUrl(XWS_URL);
+    instance.load(XWS_URL);
 
     expect(mockListFetcher).toHaveBeenCalledWith(XWS_URL);
   });
@@ -88,7 +88,7 @@ describe('#fromURL()', () => {
     mockListFetcher = jest.fn(() => xws);
 
     const instance = new XwingListLoader([mockIntegration], mockListFetcher);
-    const result = await instance.fromUrl(XWS_URL);
+    const result = await instance.load(XWS_URL);
 
     expect(result).toEqual(xws);
   });
