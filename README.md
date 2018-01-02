@@ -45,22 +45,12 @@ Example:
 ```js
 import loadXWS from 'xwing-load-xws';
 
-const url = 'http://xwing-builder.co.uk/view/754817/vader';
+const url = 'http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v4!s!22:170,243:23:25:U.124&sn=Squad%20Example&obs=';
 
 // Using promises
 loadXWS.fromUrl(url).then(
   xws => {
     console.log(xws);
-    /*
-    {
-      "faction": "imperial",
-      "points": 29,
-      "pilots": [...],
-      "vendor": {
-        "voidstate": {...}
-      }
-    }
-    */
   },
   err => {
     console.error(err);
@@ -76,7 +66,6 @@ loadXWS.fromUrl(url).then(
     console.error(err);
   }
 })();
-
 ```
 
 ## Supported integrations
