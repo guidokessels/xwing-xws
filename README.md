@@ -1,4 +1,4 @@
-# xwing-load-xws
+# xwing-list-loader
 
 A simple Node module that turns URLs into XWS JSON objects by parsing the url and fetching the XWS from the appropriate endpoint.
 
@@ -13,11 +13,11 @@ I've created this module so I can build it once and re-use it everywhere I need 
 Install using `yarn` or `npm`:
 
 ```
-$ yarn add xwing-load-xws
+$ yarn add xwing-list-loader
 ```
 
 ```
-$ npm install xwing-load-xws --save
+$ npm install xwing-list-loader --save
 ```
 
 ## API
@@ -43,7 +43,7 @@ The promise will be rejected if:
 Example:
 
 ```js
-import loadXWS from 'xwing-load-xws';
+import loadXWS from 'xwing-list-loader';
 
 const url = 'http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v4!s!22:170,243:23:25:U.124&sn=Squad%20Example&obs=';
 

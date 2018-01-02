@@ -1,9 +1,9 @@
 import module from '../lib';
-import XwingXWS from '../lib/XwingXWS';
+import XwingListLoader from '../lib/XwingListLoader';
 
 describe('module', () => {
-  test('exports an instance of XwingXWS', () => {
-    expect(module).toBeInstanceOf(XwingXWS);
+  test('exports an instance of XwingListLoader', () => {
+    expect(module).toBeInstanceOf(XwingListLoader);
   });
   test('has a #fromURl() method', () => {
     expect(module.fromUrl).toBeInstanceOf(Function);
