@@ -1,12 +1,12 @@
 import nock from 'nock';
 
-import { fetchList } from '../lib/ListFetcher';
+import fetchList from '../lib/fetch-list';
 
 const DOMAIN = 'https://mybuilder.com';
 const PATH = '/path/to/squad.xws';
 const XWS_URL = DOMAIN + PATH;
 
-describe('ListFetcher', () => {
+describe('fetch-list', () => {
   test('returns XWS on success', async () => {
     const xws = {
       faction: 'imperial',
@@ -25,7 +25,7 @@ describe('ListFetcher', () => {
   });
   describe('returns `false`', () => {
     test('if XWS could not be fetched', async () => {
-      nock(DOMAIN).get(PATH).reply(404);
+      nock(DOMAIN).get(PATH).reply(500);
 
       const result = await fetchList(XWS_URL);
       expect(result).toEqual(false);
