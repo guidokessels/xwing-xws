@@ -1,6 +1,6 @@
 {
   "name": "xwing-list-loader",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Load lists in xws format from all popular X-Wing list builders",
   "main": "lib/index.js",
   "author": "Guido Kessels <guidokessels@gmail.com>",
@@ -9,7 +9,8 @@
     "build": "babel lib -d dist",
     "test": "jest",
     "test:watch": "jest --watch",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "*.js": [
@@ -28,7 +29,8 @@
     "jest": "^20.0.4",
     "lint-staged": "^4.0.0",
     "nock": "^9.1.5",
-    "prettier": "^1.5.2"
+    "prettier": "^1.5.2",
+    "semantic-release": "^11.0.2"
   },
   "repository": {
     "type": "git",
