@@ -1,5 +1,7 @@
 # xwing-list-loader
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/guidokessels/xwing-list-loader.svg)](https://greenkeeper.io/)
+
 A simple Node module that takes squad builder URLs and returns the matching [XWS](https://github.com/elistevens/xws-spec) JSON object.
 
 ## Motivation
