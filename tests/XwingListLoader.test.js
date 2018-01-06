@@ -30,9 +30,9 @@ describe('#load()', () => {
       });
       const instance = new XwingListLoader([mockIntegration], mockListFetcher);
 
-      return expect(instance.load(XWS_URL)).rejects.toMatchObject({
-        message: 'There was an error fetching the list. ' + error,
-      });
+      return expect(instance.load(XWS_URL)).rejects.toMatchObject(
+        new Error('There was an error fetching the list. ' + error)
+      );
     });
   });
   describe('returns `false`', () => {
