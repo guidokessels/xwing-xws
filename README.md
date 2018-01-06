@@ -1,10 +1,10 @@
 # xwing-list-loader
 
-A simple Node module that takes squad builder URLs and returns the matching [XWS object](https://github.com/elistevens/xws-spec).
+A simple Node module that takes squad builder URLs and returns the matching [XWS](https://github.com/elistevens/xws-spec) JSON object.
 
 ## Motivation
 
-In several of my X-Wing projects I wanted to resolve a squad builder url to that squad's XWS object. I found myself copy-pasting some snippets of code between projects that I later had to update every time I wanted to support a new endpoint. This wouldn't work in the long run so I created this module so I can build it once and re-use it everywhere I need it.
+In several X-Wing projects I wanted to resolve a squad builder url to that squad's XWS object. I found myself copy-pasting snippets of code between projects that I later had to update every time I wanted to support a new endpoint. This wouldn't work in the long run so I created this module so I can build it once and re-use it everywhere.
 
 ## Installation
 
@@ -22,10 +22,10 @@ $ npm install xwing-list-loader --save
 
 ### load(url)
 
-- `url` A string representing the squad URL for fetching
+- `url` A string representing the squad's URL
 - Returns: `Promise<Object|False>`
 
-This method will first check if `url` matches any of the [supported integrations](#supported-integrations). If so, it will parse the url, turn it into the correct URL that points to the XWS and perform a HTTP(S) request.
+This method will first check if `url` matches any of the [supported integrations](#supported-integrations). If so, it will parse the url, turn it into an URL that points to the XWS and perform a HTTP(S) request.
 
 If valid XWS can be loaded from the given URL the promise will resolve with the XWS object.
 
