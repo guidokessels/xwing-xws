@@ -2,12 +2,12 @@
   "name": "xwing-list-loader",
   "version": "0.0.0-development",
   "description": "Load lists in xws format from all popular X-Wing list builders",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "author": "Guido Kessels <guidokessels@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "babel lib -d dist",
-    "test": "jest",
+    "test": "jest tests",
     "test:watch": "jest --watch",
     "precommit": "lint-staged",
     "semantic-release": "semantic-release"
@@ -18,6 +18,9 @@
       "git add",
       "jest --bail --findRelatedTests"
     ]
+  },
+  "engines": {
+    "node": ">=8.0.0"
   },
   "dependencies": {
     "node-fetch": "^1.7.1"
