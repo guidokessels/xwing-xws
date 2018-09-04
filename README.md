@@ -72,10 +72,11 @@ listLoader.load(url).then(
 
 A URL will be matched against the following endpoints (in order):
 
-1. [(Yet Another) Squad Builder](http://geordanr.github.io/xwing)
-2. [Voidstate](http://xwing-builder.co.uk/build)
-3. [Fab's Squadrons Generator](http://x-wing.fabpsb.net/)
-4. [Meta-Wing](http://meta-wing.com/)
+1. [(Yet Another) Squad Builder 2](http://raithos.github.io/)
+2. [(Yet Another) Squad Builder](http://geordanr.github.io/xwing)
+3. [Voidstate](http://xwing-builder.co.uk/build)
+4. [Fab's Squadrons Generator](http://x-wing.fabpsb.net/)
+5. [Meta-Wing](http://meta-wing.com/)
 
 ## License
 [MIT](http://guidokessels.mit-license.org/)
