@@ -9,12 +9,22 @@
     "build": "babel lib -d dist",
     "test": "jest tests",
     "test:watch": "jest --watch",
-    "precommit": "lint-staged",
     "semantic-release": "semantic-release"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 100
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.js": [
-      "prettier --single-quote --print-width 100 --trailing-comma es5 --write",
+      "prettier --write",
       "git add",
       "jest --bail --findRelatedTests"
     ]
@@ -23,17 +33,17 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "cross-fetch": "^3.0.0"
+    "cross-fetch": "^3.0.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.5.2",
-    "husky": "^0.14.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "husky": "^2.5.0",
     "jest": "^22.0.4",
-    "lint-staged": "^7.0.0",
-    "nock": "^10.0.0",
-    "prettier": "^1.5.2",
-    "semantic-release": "^15.0.1"
+    "lint-staged": "^8.2.1",
+    "nock": "^10.0.6",
+    "prettier": "^1.18.2",
+    "semantic-release": "^15.13.17"
   },
   "repository": {
     "type": "git",
