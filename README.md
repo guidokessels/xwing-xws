@@ -32,13 +32,11 @@ This method will first check if `url` matches any of the [supported integrations
 If valid XWS can be loaded from the given URL the promise will resolve with the XWS object.
 
 The promise will resolve with `false` if:
-
 - The given URL does not match any of the [supported integrations](#supported-integrations)
 - The given URL does not return a valid XWS JSON object (= has no `pilots` or `faction` field)
 - The request to fetch the XWS was unsuccessful (a response with status code != 2xx)
 
 The promise will be rejected if:
-
 - There are network/permission issues
 - The response cannot be parsed as JSON
 
@@ -47,8 +45,7 @@ Example:
 ```js
 import listLoader from 'xwing-list-loader';
 
-const url =
-  'http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v4!s!22:170,243:23:25:U.124&sn=Squad%20Example&obs=';
+const url = 'http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v4!s!22:170,243:23:25:U.124&sn=Squad%20Example&obs=';
 
 // Using promises
 listLoader.load(url).then(
@@ -76,14 +73,12 @@ listLoader.load(url).then(
 A URL will be matched against the following endpoints (in order):
 
 1. [(Yet Another) Squad Builder 2](http://raithos.github.io/)
-2. Launch Bay Next ([Android](https://play.google.com/store/apps/details?id=com.launchbaynext&hl=en) / [iOS](https://apps.apple.com/us/app/launch-bay-next/id1422488966))
-3. [(Yet Another) Squad Builder](http://geordanr.github.io/xwing)
-4. [Voidstate](http://xwing-builder.co.uk/build)
-5. [Fab's Squadrons Generator](http://x-wing.fabpsb.net/)
-6. [Meta-Wing](http://meta-wing.com/)
+2. [(Yet Another) Squad Builder](http://geordanr.github.io/xwing)
+3. [Voidstate](http://xwing-builder.co.uk/build)
+4. [Fab's Squadrons Generator](http://x-wing.fabpsb.net/)
+5. [Meta-Wing](http://meta-wing.com/)
 
 ## License
-
 [MIT](http://guidokessels.mit-license.org/)
 
 ---
