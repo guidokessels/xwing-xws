@@ -12,6 +12,7 @@ node_js:
 script:
   - yarn test
   - yarn run build
+  - commitlint-travis
 after_success:
   - yarn global add travis-deploy-once@4
   - travis-deploy-once "yarn run semantic-release"
