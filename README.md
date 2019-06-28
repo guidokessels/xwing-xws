@@ -73,14 +73,20 @@ listLoader.load(url).then(
 
 ## Supported integrations
 
-A URL will be matched against the following endpoints (in order):
+URLs will be matched against the following endpoints (in order):
+
+Second Edition:
 
 1. [(Yet Another) Squad Builder 2](http://raithos.github.io/)
 2. Launch Bay Next ([Android](https://play.google.com/store/apps/details?id=com.launchbaynext&hl=en) / [iOS](https://apps.apple.com/us/app/launch-bay-next/id1422488966))
-3. [(Yet Another) Squad Builder](http://geordanr.github.io/xwing)
-4. [Voidstate](http://xwing-builder.co.uk/build)
-5. [Fab's Squadrons Generator](http://x-wing.fabpsb.net/)
-6. [Meta-Wing](http://meta-wing.com/)
+3. [Meta-Wing2](https://meta.listfortress.com/)
+
+First Edition:
+
+4. [(Yet Another) Squad Builder](http://geordanr.github.io/xwing)
+5. [Voidstate](http://xwing-builder.co.uk/build)
+6. [Fab's Squadrons Generator](http://x-wing.fabpsb.net/)
+7. [Meta-Wing](http://meta-wing.com/)
 
 ## License
 
