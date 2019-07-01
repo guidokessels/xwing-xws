@@ -47,7 +47,7 @@
     "@commitlint/travis-cli": "^8.0.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "husky": "^2.5.0",
+    "husky": "^3.0.0",
     "jest": "^22.0.4",
     "lint-staged": "^8.2.1",
     "nock": "^10.0.6",
