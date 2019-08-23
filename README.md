@@ -48,7 +48,7 @@ Example:
 import listLoader from 'xwing-list-loader';
 
 const url =
-  'http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v4!s!22:170,243:23:25:U.124&sn=Squad%20Example&obs=';
+  'https://raithos.github.io/?f=Galactic%20Republic&d=v8ZsZ200Z273XW2W201WY278XWW200WY333X123WWW&sn=Ani%2FObi%2FRic&obs=gascloud1,gascloud2,gascloud3';
 
 // Using promises
 listLoader.load(url).then(
@@ -79,7 +79,8 @@ Second Edition:
 
 1. [(Yet Another) Squad Builder 2](http://raithos.github.io/)
 2. Launch Bay Next ([Android](https://play.google.com/store/apps/details?id=com.launchbaynext&hl=en) / [iOS](https://apps.apple.com/us/app/launch-bay-next/id1422488966))
-3. [Meta-Wing2](https://meta.listfortress.com/)
+3. [Official FFG Squadbuilder](https://squadbuilder.fantasyflightgames.com)
+4. [Meta-Wing2](https://meta.listfortress.com/)
 
 First Edition:
 
