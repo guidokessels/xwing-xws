@@ -16,9 +16,6 @@ script:
 after_success:
   - yarn global add travis-deploy-once@4
   - travis-deploy-once "yarn run semantic-release"
-before_install: yarn global add greenkeeper-lockfile@1
-before_script: greenkeeper-lockfile-update
-after_script: greenkeeper-lockfile-upload
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
