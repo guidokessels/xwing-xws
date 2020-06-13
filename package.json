@@ -26,7 +26,6 @@
   "lint-staged": {
     "*.js": [
       "prettier --write",
-      "git add",
       "jest --bail --findRelatedTests"
     ]
   },
@@ -36,23 +35,23 @@
     ]
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "dependencies": {
     "cross-fetch": "^3.0.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
-    "@commitlint/travis-cli": "^8.0.0",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/travis-cli": "^8.3.5",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "husky": "^2.5.0",
-    "jest": "^22.0.4",
-    "lint-staged": "^8.2.1",
-    "nock": "^10.0.6",
-    "prettier": "^1.18.2",
-    "semantic-release": "^15.13.17"
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.10",
+    "nock": "^12.0.3",
+    "prettier": "^2.0.5",
+    "semantic-release": "^17.0.8"
   },
   "repository": {
     "type": "git",
