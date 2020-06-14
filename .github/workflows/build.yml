@@ -21,3 +21,8 @@ jobs:
       - run: yarn
       - run: yarn run test
       - run: yarn run build
+      - name: Release (master branch only)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn run semantic-release
