@@ -6,7 +6,7 @@
   "author": "Guido Kessels <guidokessels@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel lib -d dist",
+    "build": "tsc",
     "test": "jest tests",
     "test:watch": "jest --watch",
     "semantic-release": "semantic-release"
@@ -38,8 +38,6 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.10",
