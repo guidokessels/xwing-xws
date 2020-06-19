@@ -1,5 +1,4 @@
 import nock from 'nock';
-
 import fetchList from './fetch-list';
 
 const DOMAIN = 'https://mybuilder.com';

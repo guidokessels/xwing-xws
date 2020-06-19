@@ -1,8 +1,10 @@
 import XwingListLoader from './XwingListLoader';
+import fetchList from './fetch-list';
+import { Integration } from './integrations/Integration';
 
 const XWS_URL = 'http://mybuilder.com/path/to/squad.xws';
-let mockIntegration;
-let mockListFetcher;
+let mockIntegration: Integration;
+let mockListFetcher: typeof fetchList;
 
 beforeEach(() => {
   mockIntegration = {
@@ -18,6 +20,7 @@ describe('constructor()', () => {
       'Requires at least 1 XWS integration to be configured.'
     ));
   test('throws an error when there is no fetch() method specified', () =>
+    // @ts-expect-error
     expect(() => new XwingListLoader([mockIntegration])).toThrow('Requires a fetch() method.'));
 });
 
@@ -39,6 +42,7 @@ describe('#load()', () => {
     test('when given an url that cannot be matched to an integration', async () => {
       const mockIntegration = {
         matches: jest.fn(() => false),
+        getXWSUrl: jest.fn(),
       };
       const instance = new XwingListLoader([mockIntegration], mockListFetcher);
       const result = await instance.load('foo.com');
@@ -46,7 +50,7 @@ describe('#load()', () => {
       expect(result).toEqual(false);
     });
     test('when XWS fetching was unsuccessful', async () => {
-      mockListFetcher = jest.fn(() => false);
+      mockListFetcher = jest.fn(() => Promise.resolve(false));
       const instance = new XwingListLoader([mockIntegration], mockListFetcher);
       const result = await instance.load(XWS_URL);
 
@@ -78,14 +82,14 @@ describe('#load()', () => {
       faction: 'imperial',
       pilots: [
         {
-          name: 'academypilot',
+          id: 'academypilot',
           points: 12,
           ship: 'tiefighter',
         },
       ],
     };
 
-    mockListFetcher = jest.fn(() => xws);
+    mockListFetcher = jest.fn(() => Promise.resolve(xws));
 
     const instance = new XwingListLoader([mockIntegration], mockListFetcher);
     const result = await instance.load(XWS_URL);

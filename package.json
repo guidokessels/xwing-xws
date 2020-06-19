@@ -6,7 +6,8 @@
   "author": "Guido Kessels <guidokessels@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p ./tsconfig.build.json",
+    "type-check": "tsc -p ./tsconfig.json --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "semantic-release": "semantic-release"
@@ -19,7 +20,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "yarn run type-check && yarn run lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
