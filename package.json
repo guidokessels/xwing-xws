@@ -3,6 +3,7 @@
   "version": "0.0.0-development",
   "description": "Load lists in xws format from all popular X-Wing list builders",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Guido Kessels <guidokessels@gmail.com>",
   "license": "MIT",
   "scripts": {
