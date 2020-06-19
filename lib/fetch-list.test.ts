@@ -1,6 +1,5 @@
 import nock from 'nock';
-
-import fetchList from '../lib/fetch-list';
+import fetchList from './fetch-list';
 
 const DOMAIN = 'https://mybuilder.com';
 const PATH = '/path/to/squad.xws';

@@ -1,5 +1,5 @@
-import module from '../lib';
-import XwingListLoader from '../lib/XwingListLoader';
+import module from '.';
+import XwingListLoader from './XwingListLoader';
 
 describe('module', () => {
   test('exports an instance of XwingListLoader', () => {

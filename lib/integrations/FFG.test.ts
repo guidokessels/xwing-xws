@@ -1,4 +1,4 @@
-import FFG from '../../lib/integrations/FFG';
+import FFG from './FFG';
 
 describe('#matches() matches all FFG urls', () => {
   test('/squad-preview/<id> url', () => {

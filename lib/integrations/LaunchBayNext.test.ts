@@ -1,4 +1,4 @@
-import LaunchBayNext from '../../lib/integrations/LaunchBayNext';
+import LaunchBayNext from './LaunchBayNext';
 
 describe('#matches() matches all LBN urls', () => {
   test('/xws url', () => {

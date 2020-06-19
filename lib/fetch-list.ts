@@ -1,6 +1,7 @@
 import fetch from 'cross-fetch';
+import { XWSSquadron } from './XWS';
 
-const fetchList = async listUrl => {
+const fetchList = async (listUrl: string): Promise<XWSSquadron | false> => {
   const response = await fetch(listUrl);
 
   if (!response.ok) {

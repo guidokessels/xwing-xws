@@ -1,4 +1,4 @@
-import Voidstate from '../../lib/integrations/Voidstate';
+import Voidstate from './Voidstate';
 
 describe('#matches() matches all Voidstate urls', () => {
   test('/view/<id> url', () => {
