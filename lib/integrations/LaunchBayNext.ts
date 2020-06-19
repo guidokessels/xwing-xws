@@ -1,15 +1,14 @@
 import { parse as parseURL } from 'url';
+import { Integration } from './Integration';
 
-class LaunchBayNext {
-  constructor() {
-    this.regexp = /^(?:https?:\/\/)?launch-bay-next\.herokuapp\.com\//;
-  }
+class LaunchBayNext implements Integration {
+  private regexp = /^(?:https?:\/\/)?launch-bay-next\.herokuapp\.com\//;
 
-  matches(input) {
+  matches(input: string) {
     return this.regexp.exec(input) !== null;
   }
 
-  getXWSUrl(input) {
+  getXWSUrl(input: string) {
     const parsed = parseURL(input);
     return `https://launch-bay-next.herokuapp.com/xws${parsed.search}`;
   }
