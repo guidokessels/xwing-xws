@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "test": "jest tests",
+    "test": "jest",
     "test:watch": "jest --watch",
     "semantic-release": "semantic-release"
   },
