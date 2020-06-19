@@ -19,6 +19,9 @@
     "tabWidth": 2,
     "printWidth": 100
   },
+  "files": [
+    "dist"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "yarn run type-check && yarn run lint-staged",
