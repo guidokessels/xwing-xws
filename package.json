@@ -8,8 +8,8 @@
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "type-check": "tsc -p ./tsconfig.json --noEmit",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest lib",
+    "test:watch": "jest lib --watch",
     "semantic-release": "semantic-release"
   },
   "prettier": {
