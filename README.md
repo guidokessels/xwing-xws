@@ -1,5 +1,8 @@
 # xwing-list-loader
 
+![npm](https://img.shields.io/npm/v/xwing-list-loader?style=flat-square)
+![GitHub](https://img.shields.io/github/license/guidokessels/xwing-list-loader?style=flat-square)
+
 A simple Node module that takes squad builder URLs and returns the matching [XWS](https://github.com/elistevens/xws-spec) JSON object.
 
 ## Motivation
@@ -23,7 +26,7 @@ $ npm install xwing-list-loader --save
 ### load(url)
 
 - `url` A string representing the squad's URL
-- Returns: `Promise<Object|False>`
+- Returns: `Promise<Object|false>`
 
 This method will first check if `url` matches any of the [supported integrations](#supported-integrations). If so, it will parse the url, turn it into an URL that points to the XWS and perform a HTTP(S) request.
 
@@ -50,10 +53,10 @@ const url =
 
 // Using promises
 listLoader.load(url).then(
-  xws => {
+  (xws) => {
     console.log(xws);
   },
-  err => {
+  (err) => {
     console.error(err);
   }
 );
@@ -89,7 +92,7 @@ First Edition:
 
 ## License
 
-[MIT](http://guidokessels.mit-license.org/)
+[MIT](LICENSE)
 
 ---
 
